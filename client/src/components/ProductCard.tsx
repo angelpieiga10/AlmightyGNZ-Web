@@ -25,8 +25,8 @@ export default function ProductCard({ id, name, description, price, image, weigh
   };
 
   return (
-    <Card className="overflow-hidden hover-elevate" data-testid={`card-product-${id}`}>
-      <div className="aspect-[4/3] overflow-hidden bg-muted">
+    <Card className="overflow-hidden hover-elevate border-2" data-testid={`card-product-${id}`}>
+      <div className="aspect-square overflow-hidden bg-gradient-to-br from-muted to-background">
         <img 
           src={image} 
           alt={`${name} - ${weight} supplement container`}
@@ -34,27 +34,27 @@ export default function ProductCard({ id, name, description, price, image, weigh
           data-testid={`img-product-${id}`}
         />
       </div>
-      <CardContent className="p-4">
-        <h3 className="font-bold text-lg mb-1" data-testid={`text-product-name-${id}`}>
+      <CardContent className="p-5">
+        <h3 className="font-black text-xl mb-2 tracking-tight" data-testid={`text-product-name-${id}`}>
           {name}
         </h3>
-        <p className="text-sm text-muted-foreground mb-2" data-testid={`text-product-description-${id}`}>
+        <p className="text-sm text-muted-foreground mb-2 leading-relaxed" data-testid={`text-product-description-${id}`}>
           {description}
         </p>
-        <p className="text-sm text-muted-foreground mb-3">
+        <p className="text-sm text-muted-foreground font-semibold mb-3">
           {weight}
         </p>
-        <p className="text-2xl font-bold text-primary" data-testid={`text-product-price-${id}`}>
+        <p className="text-3xl font-black text-primary" data-testid={`text-product-price-${id}`}>
           ${price.toFixed(2)}
         </p>
       </CardContent>
-      <CardFooter className="p-4 pt-0">
+      <CardFooter className="p-5 pt-0">
         <Button 
-          className="w-full"
+          className="w-full font-bold"
           onClick={handleAddToCart}
           data-testid={`button-add-to-cart-${id}`}
         >
-          Add to Cart
+          ADD TO CART
         </Button>
       </CardFooter>
     </Card>

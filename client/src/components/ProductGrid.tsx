@@ -1,23 +1,23 @@
 import ProductCard from './ProductCard';
-import wheyImage from '@assets/generated_images/Whey_protein_product_image_1ec7ad35.png';
-import creatineImage from '@assets/generated_images/Creatine_product_image_7c3a67b3.png';
-import preworkoutImage from '@assets/generated_images/Pre-workout_product_image_5873e9c4.png';
-import bcaaImage from '@assets/generated_images/BCAA_recovery_product_image_79402105.png';
+import proteinImage from '@assets/branding/product-protein.jpg';
+import creatineImage from '@assets/branding/product-creatine.jpg';
+import preworkoutImage from '@assets/branding/product-preworkout.jpg';
+import bcaaImage from '@assets/branding/product-bcaa.jpg';
 
 const products = [
   {
     id: '1',
     name: 'Whey Protein 1kg',
-    description: 'Premium whey protein isolate for muscle recovery and growth',
+    description: 'Premium whey protein isolate for muscle recovery and explosive growth',
     price: 49.99,
-    image: wheyImage,
+    image: proteinImage,
     weight: '1kg',
     category: 'protein',
   },
   {
     id: '2',
     name: 'Creatine Monohydrate 300g',
-    description: 'Pure creatine monohydrate for strength and performance',
+    description: 'Pure creatine monohydrate for maximum strength and performance',
     price: 24.99,
     image: creatineImage,
     weight: '300g',
@@ -26,7 +26,7 @@ const products = [
   {
     id: '3',
     name: 'Pre-Workout 250g',
-    description: 'Energy-boosting pre-workout formula for intense training',
+    description: 'Explosive energy-boosting formula for intense training sessions',
     price: 34.99,
     image: preworkoutImage,
     weight: '250g',
@@ -35,7 +35,7 @@ const products = [
   {
     id: '4',
     name: 'Recovery BCAA 300g',
-    description: 'Essential amino acids for faster recovery and endurance',
+    description: 'Essential amino acids for rapid recovery and endurance',
     price: 29.99,
     image: bcaaImage,
     weight: '300g',
@@ -45,14 +45,14 @@ const products = [
 
 export default function ProductGrid() {
   return (
-    <section id="products" className="py-12 md:py-20 px-4">
+    <section id="products" className="py-16 md:py-24 px-4 bg-muted/30">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4" data-testid="text-products-title">
-            Our Products
+          <h2 className="text-4xl md:text-5xl font-black mb-4 tracking-tight" data-testid="text-products-title">
+            OUR <span className="text-primary">ARSENAL</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto" data-testid="text-products-subtitle">
-            Premium supplements designed to help you reach your fitness goals
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-medium" data-testid="text-products-subtitle">
+            Premium supplements engineered for champions
           </p>
         </div>
         

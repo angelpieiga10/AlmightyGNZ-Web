@@ -1,6 +1,6 @@
 import ProductCard from '../ProductCard';
 import { CartProvider } from '@/contexts/CartContext';
-import wheyImage from '@assets/generated_images/Whey_protein_product_image_1ec7ad35.png';
+import proteinImage from '@assets/branding/product-protein.jpg';
 
 export default function ProductCardExample() {
   return (
@@ -9,9 +9,9 @@ export default function ProductCardExample() {
         <ProductCard
           id="1"
           name="Whey Protein 1kg"
-          description="Premium whey protein isolate for muscle recovery"
+          description="Premium whey protein isolate for muscle recovery and explosive growth"
           price={49.99}
-          image={wheyImage}
+          image={proteinImage}
           weight="1kg"
         />
       </div>

@@ -1,0 +1,39 @@
+Create a responsive e-commerce website called "Almighty Gnz".
+The site sells sports supplements like protein, creatine, and pre-workout.
+
+Requirements:
+- Use separate files: index.html, style.css, script.js.
+- Use a red and white color scheme, clean athletic style similar to MyProtein.
+- Make the site mobile responsive (mobile-first) and accessible (semantic HTML, alt text, proper labels).
+
+Pages / sections:
+1. Homepage: hero banner with slogan and a clear call-to-action button that links to the products section.
+2. Product catalog grid: product cards with image (use placeholder images), name, short description, price, and an "Add to Cart" button.
+   - Include at least 4 example products: "Whey Protein 1kg", "Creatine Monohydrate 300g", "Pre-Workout 250g", "Recovery BCAA 300g".
+3. Shopping cart page/section: lists selected items with quantity controls (+ / -), per-item subtotal, total price, and a "Checkout" button.
+4. Checkout flow: simulate checkout with a simple form (name, email, address) and a final confirmation screen (no real payments).
+5. Navbar: links to Home, Products, Cart, Contact.
+6. Footer: social media icons (placeholders) and contact info.
+
+Behavior & JavaScript:
+- Implement cart logic in script.js:
+  - Add to cart, remove item, update quantities.
+  - Persist cart in localStorage so cart survives page reloads.
+  - Update cart item count in the navbar live.
+  - Calculate totals including a simulated shipping cost.
+- Provide basic form validation on checkout (required fields).
+- Use unobtrusive JS: HTML works without JS for navigation and content (graceful degradation).
+
+Accessibility & UX:
+- Use semantic elements (<header>, <nav>, <main>, <section>, <footer>).
+- Buttons and interactive controls accessible by keyboard.
+- Provide alt attributes for images and aria-labels where appropriate.
+
+Styling:
+- Responsive grid for products (1 column on small, 2 on medium, 3+ on wide screens).
+- Clear CTA buttons (red primary, white text) and subtle hover effects.
+- Clean fonts and spacing; make the layout easy to read.
+
+At the top of index.html include a comment listing the 3 files and a short usage note: "Run index.html, edit products in script.js (products array)."
+
+End by adding a short README comment block explaining how to change product data and how cart persistence works.

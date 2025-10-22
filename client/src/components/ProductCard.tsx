@@ -9,7 +9,7 @@ interface ProductCardProps {
   description: string;
   price: number;
   image: string;
-  weight: string;
+  weight?: string;
 }
 
 export default function ProductCard({ id, name, description, price, image, weight }: ProductCardProps) {
@@ -41,9 +41,11 @@ export default function ProductCard({ id, name, description, price, image, weigh
         <p className="text-sm text-muted-foreground mb-2 leading-relaxed" data-testid={`text-product-description-${id}`}>
           {description}
         </p>
-        <p className="text-sm text-muted-foreground font-semibold mb-3">
-          {weight}
-        </p>
+        {weight && (
+          <p className="text-sm text-muted-foreground font-semibold mb-3">
+            {weight}
+          </p>
+        )}
         <p className="text-3xl font-black text-primary" data-testid={`text-product-price-${id}`}>
           ${price.toFixed(2)}
         </p>

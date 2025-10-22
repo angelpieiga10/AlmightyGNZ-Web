@@ -1,49 +1,25 @@
+import { useState } from 'react';
 import ProductCard from './ProductCard';
-import proteinImage from '@assets/branding/product-protein.jpg';
-import creatineImage from '@assets/branding/product-creatine.jpg';
-import preworkoutImage from '@assets/branding/product-preworkout.jpg';
-import bcaaImage from '@assets/branding/product-bcaa.jpg';
-
-const products = [
-  {
-    id: '1',
-    name: 'Whey Protein 1kg',
-    description: 'Premium whey protein isolate for muscle recovery and explosive growth',
-    price: 49.99,
-    image: proteinImage,
-    weight: '1kg',
-    category: 'protein',
-  },
-  {
-    id: '2',
-    name: 'Creatine Monohydrate 300g',
-    description: 'Pure creatine monohydrate for maximum strength and performance',
-    price: 24.99,
-    image: creatineImage,
-    weight: '300g',
-    category: 'creatine',
-  },
-  {
-    id: '3',
-    name: 'Pre-Workout 250g',
-    description: 'Explosive energy-boosting formula for intense training sessions',
-    price: 34.99,
-    image: preworkoutImage,
-    weight: '250g',
-    category: 'pre-workout',
-  },
-  {
-    id: '4',
-    name: 'Recovery BCAA 300g',
-    description: 'Essential amino acids for rapid recovery and endurance',
-    price: 29.99,
-    image: bcaaImage,
-    weight: '300g',
-    category: 'recovery',
-  },
-];
+import { products, categories } from '@/data/products';
+import { Button } from '@/components/ui/button';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 export default function ProductGrid() {
+  const [selectedCategory, setSelectedCategory] = useState<string>('all');
+
+  const filteredProducts = products.filter(product => {
+    if (selectedCategory === 'all') return true;
+    
+    const category = categories.find(c => c.id === selectedCategory);
+    if (!category) return true;
+    
+    if (category.subcategory) {
+      return product.category === category.category && product.subcategory === category.subcategory;
+    }
+    
+    return product.category === category.category;
+  });
+
   return (
     <section id="products" className="py-16 md:py-24 px-4 bg-muted/30">
       <div className="max-w-7xl mx-auto">
@@ -52,15 +28,54 @@ export default function ProductGrid() {
             OUR <span className="text-primary">ARSENAL</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto font-medium" data-testid="text-products-subtitle">
-            Premium supplements engineered for champions
+            Premium supplements and gear engineered for champions
           </p>
         </div>
-        
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {products.map(product => (
-            <ProductCard key={product.id} {...product} />
+
+        {/* Desktop Filter Buttons */}
+        <div className="hidden md:flex flex-wrap justify-center gap-2 mb-8">
+          {categories.map(category => (
+            <Button
+              key={category.id}
+              variant={selectedCategory === category.id ? 'default' : 'outline'}
+              onClick={() => setSelectedCategory(category.id)}
+              data-testid={`button-filter-${category.id}`}
+              className="font-bold"
+            >
+              {category.name}
+            </Button>
           ))}
         </div>
+
+        {/* Mobile Filter Dropdown */}
+        <div className="md:hidden mb-8">
+          <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <SelectTrigger className="w-full" data-testid="select-category-mobile">
+              <SelectValue placeholder="Select category" />
+            </SelectTrigger>
+            <SelectContent>
+              {categories.map(category => (
+                <SelectItem key={category.id} value={category.id} data-testid={`option-${category.id}`}>
+                  {category.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        
+        {filteredProducts.length === 0 ? (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground text-lg" data-testid="text-no-products">
+              No products found in this category
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredProducts.map(product => (
+              <ProductCard key={product.id} {...product} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

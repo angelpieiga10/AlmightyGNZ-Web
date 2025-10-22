@@ -16,7 +16,8 @@ export const products = pgTable("products", {
   price: numeric("price", { precision: 10, scale: 2 }).notNull(),
   image: text("image").notNull(),
   category: text("category").notNull(),
-  weight: text("weight").notNull(),
+  subcategory: text("subcategory"),
+  weight: text("weight"),
 });
 
 export const orders = pgTable("orders", {
@@ -24,6 +25,9 @@ export const orders = pgTable("orders", {
   customerName: text("customer_name").notNull(),
   email: text("email").notNull(),
   address: text("address").notNull(),
+  city: text("city").notNull(),
+  zipCode: text("zip_code").notNull(),
+  paymentMethod: text("payment_method").notNull(),
   total: numeric("total", { precision: 10, scale: 2 }).notNull(),
   items: text("items").notNull(),
 });

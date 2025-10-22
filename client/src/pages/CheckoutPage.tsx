@@ -1,8 +1,8 @@
 import { useCart } from '@/contexts/CartContext';
+import { useCheckout } from '@/contexts/CheckoutContext';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { useLocation } from 'wouter';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -27,7 +27,8 @@ const checkoutSchema = z.object({
 type CheckoutFormData = z.infer<typeof checkoutSchema>;
 
 export default function CheckoutPage() {
-  const { cart, total, clearCart } = useCart();
+  const { cart, total } = useCart();
+  const { setShippingInfo } = useCheckout();
   const [, setLocation] = useLocation();
 
   const form = useForm<CheckoutFormData>({
@@ -47,15 +48,14 @@ export default function CheckoutPage() {
   }
 
   const onSubmit = (data: CheckoutFormData) => {
-    console.log('Order submitted:', data);
-    clearCart();
-    setLocation('/confirmation');
+    setShippingInfo(data);
+    setLocation('/payment');
   };
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8 md:py-12">
-      <h1 className="text-3xl md:text-4xl font-bold mb-8" data-testid="text-checkout-title">
-        Checkout
+      <h1 className="text-3xl md:text-4xl font-black mb-8 tracking-tight" data-testid="text-checkout-title">
+        SHIPPING <span className="text-primary">INFORMATION</span>
       </h1>
 
       <div className="grid md:grid-cols-2 gap-8">
@@ -161,10 +161,10 @@ export default function CheckoutPage() {
 
                 <Button 
                   type="submit" 
-                  className="w-full"
-                  data-testid="button-place-order"
+                  className="w-full font-bold"
+                  data-testid="button-continue-to-payment"
                 >
-                  Place Order
+                  CONTINUE TO PAYMENT
                 </Button>
               </form>
             </Form>
